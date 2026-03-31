@@ -70,7 +70,7 @@ func DayActionInfo(data string, weight, height float64) string {
 	distanceInKm := distanceInMeters / mInKm
 
 	// 5. Вычисляем калории
-	// Переводим duration в часы (float64), так как обычно формулы используют часы
+	// Переводим duration в часы (float64)
 	durationInHours := duration.Hours()
 	calories := WalkingSpentCalories(steps, weight, height, durationInHours)
 
