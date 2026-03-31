@@ -1,6 +1,7 @@
 package spentcalories
 
 import (
+	"errors"
 	"fmt"
 	"log"
 	"strconv"
@@ -25,7 +26,7 @@ func parseTraining(data string) (int, string, time.Duration, error) {
 
 	// 2. Проверить, чтобы длина слайса была равна 3
 	if len(parts) != 3 {
-		return 0, "", 0, nil //errors.New("неверный формат данных: ожидается 3 элемента")
+		return 0, "", 0, errors.New("неверный формат данных: ожидается 3 элемента")
 	}
 
 	// 3. Преобразовать первый элемент (шаги) в int

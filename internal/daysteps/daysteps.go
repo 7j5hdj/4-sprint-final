@@ -60,7 +60,7 @@ func DayActionInfo(data string, weight, height float64) string {
 	}
 
 	// 2. Проверяем, чтобы количество шагов было больше 0
-	if steps <= 0 {
+	if steps <= 0 || duration <= 0 {
 		return ""
 	}
 
@@ -80,7 +80,7 @@ func DayActionInfo(data string, weight, height float64) string {
 
 	if err != nil {
 		// Если функция вернула ошибку, нужно её обработать
-		//fmt.Println("Ошибка при расчете калорий:", err)
+		fmt.Println("Ошибка при расчете калорий:", err)
 		return ""
 	}
 
