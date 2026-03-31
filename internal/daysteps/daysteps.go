@@ -56,7 +56,7 @@ func DayActionInfo(data string, weight, height float64) string {
 	// 1. Получаем данные с помощью parsePackage
 	steps, duration, err := parsePackage(data)
 	if err != nil {
-		fmt.Println("Ошибка парсинга данных:", err)
+		//fmt.Println("Ошибка парсинга данных:", err)
 		return ""
 	}
 
@@ -81,7 +81,7 @@ func DayActionInfo(data string, weight, height float64) string {
 
 	if err != nil {
 		// Если функция вернула ошибку, нужно её обработать
-		fmt.Println("Ошибка при расчете калорий:", err)
+		//fmt.Println("Ошибка при расчете калорий:", err)
 		return ""
 	}
 
