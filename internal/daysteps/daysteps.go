@@ -1,6 +1,7 @@
 package daysteps
 
 import (
+	"errors"
 	"fmt"
 	"strconv"
 	"strings"
@@ -24,25 +25,24 @@ func parsePackage(data string) (int, time.Duration, error) {
 
 	// 2. Проверить, что длина слайса равна 2
 	if len(parts) != 2 {
-		return 0, 0, nil
+		return 0, 0, errors.New("неверный формат данных")
 	}
 
 	// 3. Преобразовать первый элемент шаги в int
 	steps, err := strconv.Atoi(parts[0])
 	if err != nil {
-		return 0, 0, nil
+		return 0, 0, errors.New("неверный формат данных")
 	}
 
 	// 4. Проверить, что количество шагов больше 0
 	if steps <= 0 {
-		return 0, 0, nil
+		return 0, 0, errors.New("неверный формат данных")
 	}
 
 	// 5. Преобразовать второй элемент в time.Duration
-	// time.ParseDuration поддерживает форматы типа "3h50m"
 	duration, err := time.ParseDuration(parts[1])
 	if err != nil {
-		return 0, 0, nil
+		return 0, 0, errors.New("неверный формат данных")
 	}
 
 	// 6. Если всё успешно, возвращаем данные
@@ -55,7 +55,7 @@ func DayActionInfo(data string, weight, height float64) string {
 	// 1. Получаем данные с помощью parsePackage
 	steps, duration, err := parsePackage(data)
 	if err != nil {
-		//fmt.Println("Ошибка парсинга данных:", err)
+		fmt.Println("Ошибка парсинга данных:", err)
 		return ""
 	}
 
