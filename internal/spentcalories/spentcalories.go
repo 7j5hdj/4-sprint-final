@@ -39,8 +39,15 @@ func parseTraining(data string) (int, string, time.Duration, error) {
 	// Вид активности берем как есть (второй элемент слайса)
 	activityType := parts[1]
 
+	if steps <= 0 {
+		return 0, "", 0, errors.New("некорректное количество шагов")
+	}
+
 	// 4. Преобразовать третий элемент (длительность) в time.Duration
 	duration, err := time.ParseDuration(parts[2])
+	if duration <= 0 {
+		return 0, "", 0, errors.New("некорректная продолжительность")
+	}
 	if err != nil {
 		// При возникновении ошибки вернуть 0 шагов, 0 длительности и ошибку
 		return 0, "", 0, err
@@ -124,7 +131,7 @@ func TrainingInfo(data string, weight, height float64) (string, error) {
 	speed := meanSpeed(steps, height, duration)
 
 	report := fmt.Sprintf(
-		"Тип тренировки: %s\nДлительность: %.2f ч.\nДистанция: %.2f км.\nСкорость: %.2f км/ч\nСожгли калорий: %.2f \n",
+		"Тип тренировки: %s\nДлительность: %.2f ч.\nДистанция: %.2f км.\nСкорость: %.2f км/ч\nСожгли калорий: %.2f\n",
 		activityType,
 		duration.Hours(),
 		dist,
@@ -140,7 +147,7 @@ func RunningSpentCalories(steps int, weight, height float64, duration time.Durat
 
 	// 1. Проверить входные параметры на корректность.
 	// Вес, рост и время должны быть положительными числами.
-	if weight <= 0 || height <= 0 || duration <= 0 || steps < 0 {
+	if weight <= 0 || height <= 0 || duration <= 0 || steps <= 0 {
 		return 0, errors.New("некорректные входные параметры: значения должны быть больше нуля")
 	}
 

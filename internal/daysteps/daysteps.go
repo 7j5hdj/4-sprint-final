@@ -3,6 +3,7 @@ package daysteps
 import (
 	"errors"
 	"fmt"
+	"log"
 	"strconv"
 	"strings"
 	"time"
@@ -41,6 +42,9 @@ func parsePackage(data string) (int, time.Duration, error) {
 
 	// 5. Преобразовать второй элемент в time.Duration
 	duration, err := time.ParseDuration(parts[1])
+	if duration <= 0 {
+		return 0, 0, errors.New("неверный формат данных")
+	}
 	if err != nil {
 		return 0, 0, errors.New("неверный формат данных")
 	}
@@ -55,7 +59,7 @@ func DayActionInfo(data string, weight, height float64) string {
 	// 1. Получаем данные с помощью parsePackage
 	steps, duration, err := parsePackage(data)
 	if err != nil {
-		fmt.Println("Ошибка парсинга данных:", err)
+		log.Println(err)
 		return ""
 	}
 
@@ -80,7 +84,7 @@ func DayActionInfo(data string, weight, height float64) string {
 
 	if err != nil {
 		// Если функция вернула ошибку, нужно её обработать
-		fmt.Println("Ошибка при расчете калорий:", err)
+		log.Println(err)
 		return ""
 	}
 
