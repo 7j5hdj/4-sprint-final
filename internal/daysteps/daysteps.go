@@ -6,6 +6,8 @@ import (
 	"strconv"
 	"strings"
 	"time"
+
+	"github.com/Yandex-Practicum/tracker/internal/spentcalories"
 )
 
 const (
@@ -72,7 +74,16 @@ func DayActionInfo(data string, weight, height float64) string {
 	// 5. Вычисляем калории
 	// Переводим duration в часы (float64)
 	durationInHours := duration.Hours()
-	calories := WalkingSpentCalories(steps, weight, height, durationInHours)
+
+	d := time.Duration(durationInHours * float64(time.Hour))
+
+	calories, err := spentcalories.WalkingSpentCalories(steps, weight, height, d)
+
+	if err != nil {
+		// Если функция вернула ошибку, нужно её обработать
+		fmt.Println("Ошибка при расчете калорий:", err)
+		return ""
+	}
 
 	// 6. Формируем и возвращаем результирующую строку
 	return fmt.Sprintf(
