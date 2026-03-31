@@ -172,7 +172,7 @@ func WalkingSpentCalories(steps int, weight, height float64, duration time.Durat
 
 	// 1. Проверить входные параметры на корректность.
 	// Физические параметры и время должны быть положительными.
-	if weight <= 0 || height <= 0 || duration <= 0 || steps < 0 {
+	if weight <= 0 || height <= 0 || duration <= 0 || steps <= 0 {
 		return 0, errors.New("некорректные параметры: проверьте вес, рост, шаги и длительность")
 	}
 
