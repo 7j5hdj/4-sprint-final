@@ -19,8 +19,6 @@ const (
 )
 
 func parsePackage(data string) (int, time.Duration, error) {
-	// TODO: реализовать функцию
-
 	// 1. Разделить строку на слайс строк по запятой
 	parts := strings.Split(data, ",")
 
@@ -45,6 +43,7 @@ func parsePackage(data string) (int, time.Duration, error) {
 	if duration <= 0 {
 		return 0, 0, errors.New("неверный формат данных")
 	}
+
 	if err != nil {
 		return 0, 0, errors.New("неверный формат данных")
 	}
@@ -54,8 +53,6 @@ func parsePackage(data string) (int, time.Duration, error) {
 }
 
 func DayActionInfo(data string, weight, height float64) string {
-	// TODO: реализовать функцию
-
 	// 1. Получаем данные с помощью parsePackage
 	steps, duration, err := parsePackage(data)
 	if err != nil {
@@ -68,14 +65,10 @@ func DayActionInfo(data string, weight, height float64) string {
 		return ""
 	}
 
-	// 3. Вычисляем дистанцию в метрах
 	distanceInMeters := float64(steps) * stepLength
 
-	// 4. Переводим дистанцию в километры
 	distanceInKm := distanceInMeters / mInKm
 
-	// 5. Вычисляем калории
-	// Переводим duration в часы (float64)
 	durationInHours := duration.Hours()
 
 	d := time.Duration(durationInHours * float64(time.Hour))
