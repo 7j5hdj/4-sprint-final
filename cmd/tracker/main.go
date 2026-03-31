@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/7j5hdj/tracker/internal/daysteps"
-	"github.com/7j5hdj/tracker/internal/spentcalories"
+	"my-app/internal/daysteps"
+	"my-app/internal/spentcalories"
 )
 
 func main() {

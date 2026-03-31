@@ -7,7 +7,7 @@ import (
 	"strings"
 	"time"
 
-    "internal\spentcalories\spentcalories.go"
+	"my-app/internal/spentcalories"
 )
 
 const (
