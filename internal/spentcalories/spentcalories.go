@@ -109,7 +109,7 @@ func TrainingInfo(data string, weight, height float64) (string, error) {
 		calories, calcErr = WalkingSpentCalories(steps, weight, height, duration)
 	default:
 		// 4. Если тип неизвестен, возвращаем ошибку
-		return "", nil //errors.New("неизвестный тип тренировки")
+		return "", errors.New("неизвестный тип тренировки")
 	}
 
 	// Обработка ошибок, возникших при расчете калорий (например, некорректные параметры)
@@ -141,7 +141,7 @@ func RunningSpentCalories(steps int, weight, height float64, duration time.Durat
 	// 1. Проверить входные параметры на корректность.
 	// Вес, рост и время должны быть положительными числами.
 	if weight <= 0 || height <= 0 || duration <= 0 || steps < 0 {
-		return 0, nil //errors.New("некорректные входные параметры: значения должны быть больше нуля")
+		return 0, errors.New("некорректные входные параметры: значения должны быть больше нуля")
 	}
 
 	// 2. Рассчитать среднюю скорость с помощью meanSpeed().
@@ -166,7 +166,7 @@ func WalkingSpentCalories(steps int, weight, height float64, duration time.Durat
 	// 1. Проверить входные параметры на корректность.
 	// Физические параметры и время должны быть положительными.
 	if weight <= 0 || height <= 0 || duration <= 0 || steps < 0 {
-		return 0, nil //errors.New("некорректные параметры: проверьте вес, рост, шаги и длительность")
+		return 0, errors.New("некорректные параметры: проверьте вес, рост, шаги и длительность")
 	}
 
 	// 2. Рассчитать среднюю скорость с помощью meanSpeed().
